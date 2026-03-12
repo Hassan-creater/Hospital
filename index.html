@@ -1,38 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <title>Responsive Navbar</title>
-  </head>
-  <body>
-    <div class="main">
-      <nav>
-        <h1>Car <span>Space</span></h1>
-        <ul>
-          <li><button type="button">Home</button></li>
-          <li><button type="button">About</button></li>
-          <li><button type="button">Contact</button></li>
-          <li><button type="button">Services</button></li>
-          <i class="fa-solid fa-bars-staggered" id="bars"></i>
-          <i class="fa-solid fa-xmark" id="xmark"></i>
-        </ul>
-      </nav>
-      <div class="menue">
-        <button type="button">Home</button>
-        <button type="button">About</button>
-        <button type="button">Contact</button>
-        <button type="button">Services</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MedCare Hospital – Advanced Healthcare</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand">
+      <span class="logo-icon"><i class="fa-solid fa-house-medical"></i></span>
+      <span class="logo-text">MedCare</span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#departments">Departments</a></li>
+      <li><a href="#doctors">Doctors</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#appointment">Appointment</a></li>
+      <li><a href="#bmi">BMI Check</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-emergency">
+      <span>Emergency: </span><strong>0800-MEDCARE</strong>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <p class="hero-tagline">Trusted Since 1995</p>
+      <h1 class="hero-title">Your Health,<br/><span>Our Priority</span></h1>
+      <p class="hero-desc">World-class medical care delivered with compassion. From emergency services to specialized treatments — we are here for you 24/7.</p>
+      <div class="hero-btns">
+        <a href="#appointment" class="btn btn-primary">Book Appointment</a>
+        <a href="#departments" class="btn btn-outline">Our Departments</a>
       </div>
     </div>
-    <script src="script.js"></script>
-  </body>
+    <div class="hero-stats">
+      <div class="stat-card" data-count="250">
+        <span class="stat-num" id="stat1">0</span><span class="stat-plus">+</span>
+        <p>Specialist Doctors</p>
+      </div>
+      <div class="stat-card" data-count="15000">
+        <span class="stat-num" id="stat2">0</span><span class="stat-plus">+</span>
+        <p>Patients Served</p>
+      </div>
+      <div class="stat-card" data-count="30">
+        <span class="stat-num" id="stat3">0</span><span class="stat-plus">+</span>
+        <p>Years of Excellence</p>
+      </div>
+      <div class="stat-card" data-count="98">
+        <span class="stat-num" id="stat4">0</span><span class="stat-plus">%</span>
+        <p>Patient Satisfaction</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TICKER ===== -->
+  <div class="ticker-wrap">
+    <div class="ticker-label">NOTICE</div>
+    <div class="ticker-content" id="ticker">Loading notices...</div>
+  </div>
+
+  <!-- ===== DEPARTMENTS ===== -->
+  <section class="section" id="departments">
+    <div class="section-header">
+      <p class="section-label">What We Offer</p>
+      <h2>Our <span>Departments</span></h2>
+      <p class="section-sub">Expert care across every medical specialty</p>
+    </div>
+    <div class="dept-filter">
+      <button class="filter-btn active" onclick="filterDepts('all')">All</button>
+      <button class="filter-btn" onclick="filterDepts('surgical')">Surgical</button>
+      <button class="filter-btn" onclick="filterDepts('medical')">Medical</button>
+      <button class="filter-btn" onclick="filterDepts('diagnostic')">Diagnostic</button>
+    </div>
+    <div class="dept-grid" id="deptGrid"></div>
+  </section>
+
+  <!-- ===== DOCTORS ===== -->
+  <section class="section section-dark" id="doctors">
+    <div class="section-header">
+      <p class="section-label">Expert Team</p>
+      <h2>Meet Our <span>Doctors</span></h2>
+      <p class="section-sub">Experienced, certified specialists dedicated to your recovery</p>
+    </div>
+    <div class="doctors-grid" id="doctorsGrid"></div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="section" id="services">
+    <div class="section-header">
+      <p class="section-label">Why Choose Us</p>
+      <h2>Our <span>Services</span></h2>
+    </div>
+    <div class="services-grid" id="servicesGrid"></div>
+  </section>
+
+  <!-- ===== APPOINTMENT ===== -->
+  <section class="section section-teal" id="appointment">
+    <div class="appt-container">
+      <div class="appt-info">
+        <p class="section-label">Book Now</p>
+        <h2>Schedule an <span>Appointment</span></h2>
+        <p>Fill in your details and our team will confirm your appointment within 2 hours.</p>
+        <ul class="appt-features">
+          <li>✔ Available 7 days a week</li>
+          <li>✔ Confirmation via SMS/Email</li>
+          <li>✔ Free initial consultation</li>
+          <li>✔ No hidden charges</li>
+        </ul>
+      </div>
+      <div class="appt-form">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="apptName" placeholder="Enter your full name"/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="text" id="apptPhone" placeholder="03xx-xxxxxxx"/>
+          </div>
+          <div class="form-group">
+            <label>Age</label>
+            <input type="number" id="apptAge" placeholder="Your age" min="1" max="120"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Department</label>
+          <select id="apptDept">
+            <option value="">-- Select Department --</option>
+            <option>Cardiology</option>
+            <option>Neurology</option>
+            <option>Orthopedics</option>
+            <option>Pediatrics</option>
+            <option>Oncology</option>
+            <option>Gynecology</option>
+            <option>Emergency</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Preferred Date</label>
+            <input type="date" id="apptDate"/>
+          </div>
+          <div class="form-group">
+            <label>Time Slot</label>
+            <select id="apptTime">
+              <option value="">-- Select Time --</option>
+              <option>09:00 AM</option>
+              <option>10:00 AM</option>
+              <option>11:00 AM</option>
+              <option>02:00 PM</option>
+              <option>03:00 PM</option>
+              <option>04:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Message (Optional)</label>
+          <textarea id="apptMsg" placeholder="Describe your symptoms briefly..." rows="3"></textarea>
+        </div>
+        <button class="btn btn-primary full-btn" onclick="bookAppointment()">Confirm Appointment</button>
+        <p class="form-msg" id="apptMsg2"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BMI CALCULATOR ===== -->
+  <section class="section" id="bmi">
+    <div class="section-header">
+      <p class="section-label">Health Tools</p>
+      <h2>BMI <span>Calculator</span></h2>
+      <p class="section-sub">Check your Body Mass Index instantly</p>
+    </div>
+    <div class="bmi-container">
+      <div class="bmi-form">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="bmiName" placeholder="Enter name"/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Weight (kg)</label>
+            <input type="number" id="bmiWeight" placeholder="e.g. 70" min="1"/>
+          </div>
+          <div class="form-group">
+            <label>Height (cm)</label>
+            <input type="number" id="bmiHeight" placeholder="e.g. 170" min="1"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Gender</label>
+          <select id="bmiGender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <button class="btn btn-primary full-btn" onclick="calculateBMI()">Calculate BMI</button>
+      </div>
+      <div class="bmi-result" id="bmiResult">
+        <div class="bmi-placeholder">
+          <span>🏥</span>
+          <p>Your BMI result will appear here</p>
+        </div>
+      </div>
+    </div>
+    <!-- BMI History -->
+    <div class="bmi-history-section" id="bmiHistorySection" style="display:none;">
+      <h3>Recent BMI Records</h3>
+      <table class="bmi-table" id="bmiTable">
+        <thead>
+          <tr><th>#</th><th>Name</th><th>Weight</th><th>Height</th><th>BMI</th><th>Category</th></tr>
+        </thead>
+        <tbody id="bmiTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== DIGITAL CLOCK / LIVE INFO ===== -->
+  <section class="clock-section">
+    <div class="clock-container">
+      <div class="clock-box">
+        <p class="clock-label">Current Time</p>
+        <div class="clock" id="digitalClock">00:00:00</div>
+        <div class="clock-date" id="clockDate"></div>
+      </div>
+      <div class="clock-box">
+        <p class="clock-label">Emergency Hotline</p>
+        <div class="emergency-num">0800-MEDCARE</div>
+        <p class="emg-sub">Available 24 hours / 7 days</p>
+      </div>
+      <div class="clock-box">
+        <p class="clock-label">Visiting Hours</p>
+        <div class="visiting">10:00 AM – 12:00 PM</div>
+        <div class="visiting">04:00 PM – 06:00 PM</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section" id="testimonials">
+    <div class="section-header">
+      <p class="section-label">Patient Stories</p>
+      <h2>What Patients <span>Say</span></h2>
+    </div>
+    <div class="testimonials-slider" id="testimonialSlider"></div>
+    <div class="slider-dots" id="sliderDots"></div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="section section-dark" id="contact">
+    <div class="section-header">
+      <p class="section-label">Get In Touch</p>
+      <h2>Contact <span>Us</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <h4>Address</h4>
+        <p>123 Healthcare Avenue,<br/>Medical City, Islamabad, Pakistan</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon"><i class="fa-solid fa-phone-volume"></i></div>
+        <h4>Phone</h4>
+        <p>Emergency: 0800-MEDCARE<br/>General: +92-51-1234567</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+        <h4>Email</h4>
+        <p>info@medcarehospital.pk<br/>appointments@medcarehospital.pk</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+        <h4>Working Hours</h4>
+        <p>OPD: Mon–Sat, 9AM–5PM<br/>Emergency: 24/7</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><span class="logo-icon"><i class="fa-solid fa-house-medical"></i></span> MedCare</div>
+        <p>Providing world-class healthcare with compassion since 1995. Your health is our mission.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#departments">Departments</a></li>
+          <li><a href="#doctors">Doctors</a></li>
+          <li><a href="#appointment">Appointment</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Departments</h4>
+        <ul>
+          <li><a href="#departments">Cardiology</a></li>
+          <li><a href="#departments">Neurology</a></li>
+          <li><a href="#departments">Pediatrics</a></li>
+          <li><a href="#departments">Emergency</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Policies</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Patient Rights</a></li>
+          <li><a href="#">Insurance</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="footerYear"></span> MedCare Hospital. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
