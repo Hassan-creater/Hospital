@@ -10,7 +10,6 @@
    - functions
    - arrays
    =========================== */
-
 // ============================================================
 // ARRAYS: Data for departments, doctors, services, testimonials
 // ============================================================
@@ -636,3 +635,4 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
+
