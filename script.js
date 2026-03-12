@@ -1,5 +1,4 @@
-/* ===========================
-   MedCare Hospital – script.js
+/* ===========================  MedCare Hospital – script.js
    All mandatory JS requirements:
    - Arithmetic Operators (+, -, *, /, %)
    - Comparison Operators (==, ===, >, <)
@@ -636,3 +635,4 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
+
